@@ -1,0 +1,22 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  helloworld
+  namespace: default
+  labels:
+    app:  helloworld
+spec:
+  selector:
+    matchLabels:
+      app: helloworld
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  helloworld
+    spec:
+      containers:
+      - name:  helloworld
+        image:  ricardosilva86/helloworld:latest
+        imagePullPolicy: IfNotPresent
