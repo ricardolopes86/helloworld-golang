@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helloworld-app
+  namespace: default
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/ricardolopes86/helloworld-golang.git'
+    path: app/helloworld-app
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
